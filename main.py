@@ -1,6 +1,6 @@
 import numpy as np
 from model import Net
-fron utils inport print_quant_measures
+from utils import print_quant_measures
 import torch
 from torch.utils.data import DataLoader, Dataset
 import torchvision.transforms as transforms
