@@ -88,5 +88,115 @@ The performance of the proposed M-AVAE model was evaluated against various state
 
 ---
 
+## **Usage**
+
+### **1. Setup and Installation**
+
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/yourusername/brain-age-prediction.git
+    cd brain-age-prediction
+    ```
+
+2. **Install dependencies**:
+    Ensure you have Python 3.8 or above installed. Use the following command to install all required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+---
+
+### **2. Prepare Your Data**
+
+The model expects **two sets of features** (likely from structural MRI (sMRI) and functional MRI (fMRI)) in the form of NumPy arrays. Here's a guideline for preparing your data:
+
+1. **Convert your brain scans into NumPy files**:
+   - Ensure that your MRI scans are preprocessed and saved as `.npy` files (NumPy arrays). Each file should contain features extracted from the scans (e.g., after applying preprocessing, such as resizing, normalization, etc.).
+   - If you are starting with medical image files like **NIfTI (.nii)** or **DICOM (.dcm)**, convert them into NumPy arrays using tools like `nibabel` (for `.nii` files) or `pydicom` (for `.dcm` files). Example:
+
+     ```python
+     import nibabel as nib
+     import numpy as np
+
+     # Load NIfTI image
+     img = nib.load('your_scan.nii')
+     img_data = img.get_fdata()
+
+     # Save as NumPy array
+     np.save('features1.npy', img_data)
+     ```
+
+2. **Save the NumPy arrays**:
+   - You need to save two sets of features as NumPy files:
+     - `features1.npy`: The first set of features (e.g., from sMRI scans).
+     - `features2.npy`: The second set of features (e.g., from fMRI scans).
+   - Corresponding labels should be saved as:
+     - `labels_Age.npy`: Array of the subjects' chronological ages.
+     - `labels_Gender.npy`: Array of the subjects' genders (e.g., 0 for male, 1 for female).
+
+---
+
+### **3. Training the Model**
+
+1. **Prepare Training Data**:
+   Ensure the following NumPy files exist in the root directory:
+   - `features1.npy`: First modality's features (e.g., sMRI data).
+   - `features2.npy`: Second modality's features (e.g., fMRI data).
+   - `labels_Age.npy`: Ground truth ages.
+   - `labels_Gender.npy`: Ground truth genders.
+
+2. **Modify Hyperparameters (Optional)**:
+   - You can modify training hyperparameters like `batch_size`, `learning rate`, and `number of epochs` by editing the `train.py` file.
+
+3. **Run the Training Script**:
+    ```bash
+    python train.py
+    ```
+
+   The model will train using the provided datasets and automatically save checkpoints and performance logs.
+
+---
+
+### **4. Testing the Model**
+
+1. **Prepare Testing Data**:
+   Convert your test brain scans (sMRI and fMRI) into NumPy arrays similar to the training data.
+   - `Test_features1.npy`: First modality features (sMRI).
+   - `Test_features2.npy`: Second modality features (fMRI).
+   - `Test_labels_Age.npy`: Ground truth age labels for test data.
+   - `Test_labels_Gender.npy`: Ground truth gender labels for test data.
+
+2. **Run the Testing Script**:
+    ```bash
+    python test.py
+    ```
+
+   This will run the trained model on the test data, output the predictions, and print evaluation metrics (e.g., accuracy, F1 score, precision, recall).
+
+---
+
+### **5. Inference with New Data**
+
+If you have new data (sMRI and fMRI scans) and want to perform inference (predict age and gender):
+
+1. **Prepare New Data**:
+   Ensure your new data is preprocessed and converted into NumPy arrays (`feature1.npy` and `feature2.npy`).
+
+2. **Run Inference**:
+    ```bash
+    python main.py feature1.npy feature2.npy
+    ```
+
+   This will load the model and print predicted age and gender to the console.
+
+---
+
+### **6. Expected Output**
+
+- **Predicted Age**: The model will output the predicted biological age.
+- **Predicted Gender**: The model will output the predicted gender (e.g., 0 for male, 1 for female).
+  
+Example console output:
+
 
 
