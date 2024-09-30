@@ -21,6 +21,11 @@ This project focuses on predicting biological brain age using multimodal MRI dat
 
 The **metaverse**, combining physical and virtual realities, is set to revolutionize healthcare through advancements in artificial intelligence (AI), virtual reality (VR), augmented reality (AR), and high-speed internet. Particularly in the realm of neuroimaging, the metaverse provides an innovative platform for medical diagnostics, such as **brain age estimation**, a crucial biomarker for identifying neurodegenerative diseases like Alzheimer's Disease (AD). 
 
+One transformative application within the metaverse is the **digital twin**, a real-time virtual replica of a patient continuously updated with data from wearables, imaging, and electronic health records. This digital twin enables continuous health monitoring and predictive diagnostics. Integrating brain age estimation into a patient's digital twin allows dynamic neurological health assessments, providing personalized treatment strategies and early intervention for diseases like Alzheimer’s.
+
+![Digital Twin in Healthcare](images/DigitalTwin.png)
+*Figure: A metaverse-based healthcare AI system using a digital twin for brain age estimation and secure data sharing.*
+
 Brain age estimation algorithms predict the biological age of the brain using neuroimaging data like structural MRI (sMRI) and functional MRI (fMRI), offering insights into aging-related pathologies. However, challenges remain when fMRI data is incorporated, given the complexity of functional connectivity measurements. To address these challenges, we introduce the **Multitask Adversarial Variational Autoencoder (M-AVAE)**—a cutting-edge deep learning model that integrates multimodal data from sMRI and fMRI, along with multitask learning, to improve brain age predictions.
 
 Our framework introduces two key innovations:
@@ -30,20 +35,6 @@ Our framework introduces two key innovations:
 Evaluated on the **OpenBHB dataset**, a comprehensive brain MRI collection, the M-AVAE outperforms traditional methods with a **Mean Absolute Error (MAE)** of 2.77 years. This positions our framework as an ideal tool for brain health applications in **metaverse-based healthcare**.
 
 ---
-
-## **Methods**
-
-### **1. Digital Twin and Brain Age Estimation in the Metaverse**
-
-The digital twin concept in healthcare refers to a real-time virtual replica of a patient, updated using data from wearables, imaging, and electronic health records. This allows for continuous health monitoring and predictive diagnostics.
-
-Integrating brain age estimation into a patient's digital twin within the metaverse enables dynamic neurological health assessment, providing personalized treatment strategies and early intervention for conditions like Alzheimer's disease.
-
-![Digital Twin in Healthcare](images/DigitalTwin.png)
-*Figure: A metaverse-based healthcare AI system using a digital twin for brain age estimation and secure data sharing.*
-
----
-
 ### **2. Proposed Model: M-AVAE**
 
 We propose the **Multitask Adversarial Variational Autoencoder (M-AVAE)** for brain age estimation, combining adversarial learning and variational autoencoders to fuse sMRI and fMRI data. The model's unique feature lies in disentangling latent features from each modality into **generic** (shared) and **unique** (modality-specific) components, improving the representation of brain structure and functionality.
