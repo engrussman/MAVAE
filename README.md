@@ -8,8 +8,8 @@ This project focuses on predicting biological brain age using multimodal MRI dat
 - [Introduction](#introduction)
 - [Methodology](#methodology)
 - [Results](#results)
-- [Installation](#installation) *(To be completed later)*
-- [Usage](#usage) *(To be completed later)*
+- [Installation](#installation)
+- [Usage](#usage)
 - [Model Architecture](#model-architecture)
 - [Performance Comparison](#performance-comparison)
 - [License](#license)
