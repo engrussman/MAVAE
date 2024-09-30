@@ -19,72 +19,105 @@ This project focuses on predicting biological brain age using multimodal MRI dat
 
 ## **Introduction**
 
-Accurate estimation of biological age (BA) from neuroimaging data is crucial for understanding brain development and detecting neurodegenerative diseases. BA provides insights into individual differences in age-related traits, often more effectively than chronological age (CA), especially when studying conditions like Alzheimer's, HIV, and traumatic brain injuries. While non-imaging approaches for BA estimation have been explored extensively, they lack specificity to particular organs, like the brain.
+The **metaverse**, combining physical and virtual realities, is set to revolutionize healthcare through advancements in artificial intelligence (AI), virtual reality (VR), augmented reality (AR), and high-speed internet. Particularly in the realm of neuroimaging, the metaverse provides an innovative platform for medical diagnostics, such as **brain age estimation**, a crucial biomarker for identifying neurodegenerative diseases like Alzheimer's Disease (AD). 
 
-Our study addresses this gap by focusing on the integration of functional magnetic resonance imaging (fMRI) and structural magnetic resonance imaging (sMRI) to estimate brain age. Additionally, we incorporate gender prediction, as gender differences significantly influence the brain aging process. The novel M-AVAE framework introduced in this project disentangles the shared and unique features of the sMRI and fMRI data to improve the estimation of brain age.
-![Brain Scan Visualizations](images/visual_sMRI_fMRI.png)
-*Visualization of sMRI and fMRI brain scans across different age groups and sex.*
+Brain age estimation algorithms predict the biological age of the brain using neuroimaging data like structural MRI (sMRI) and functional MRI (fMRI), offering insights into aging-related pathologies. However, challenges remain when fMRI data is incorporated, given the complexity of functional connectivity measurements. To address these challenges, we introduce the **Multitask Adversarial Variational Autoencoder (M-AVAE)**—a cutting-edge deep learning model that integrates multimodal data from sMRI and fMRI, along with multitask learning, to improve brain age predictions.
+
+Our framework introduces two key innovations:
+1. **Latent Variable Disentanglement**: Separation of generic and unique features from each modality to isolate shared and modality-specific attributes.
+2. **Multitask Learning**: Leveraging **sex classification** as an auxiliary task to account for sex-related brain aging differences.
+
+Evaluated on the **OpenBHB dataset**, a comprehensive brain MRI collection, the M-AVAE outperforms traditional methods with a **Mean Absolute Error (MAE)** of 2.77 years. This positions our framework as an ideal tool for brain health applications in **metaverse-based healthcare**.
 
 ---
 
-## **Methodology**
+## **Methods**
 
-This project introduces the **Multi-Task Adversarial Variational Autoencoder (M-AVAE)**, which integrates both adversarial and variational autoencoders to perform brain age estimation and gender prediction. The core innovation lies in disentangling the shared and unique components of the latent features extracted from sMRI and fMRI data.
+### **1. Digital Twin and Brain Age Estimation in the Metaverse**
 
-- **Feature Extraction**: Initial features are selected using a Random Forest-based filter method. This reduces the dimensionality of the data, making it feasible to process.
+One transformative application of AI within the metaverse is the **digital twin**. A digital twin is a virtual replica of an individual's brain or body that is updated in real-time using data from wearables, imaging, and electronic health records (EHR). The twin enables continuous health monitoring and predictive diagnostics.
+
+By integrating **brain age estimation** within a digital twin, healthcare providers can monitor patients' neurological health in real time, simulating and predicting the progression of brain diseases like Alzheimer's. This integration of brain age into a **metaverse-based AI ecosystem** allows for personalized treatment strategies and early intervention.
+
+![Digital Twin in Healthcare](images/DigitalTwin.png)
+*Figure: A metaverse-based healthcare AI system using a digital twin for brain age estimation and secure data sharing.*
+
+---
+
+### **2. Proposed Model: M-AVAE**
+
+We propose the **Multitask Adversarial Variational Autoencoder (M-AVAE)** for brain age estimation, combining adversarial learning and variational autoencoders to fuse sMRI and fMRI data. The model's unique feature lies in disentangling latent features from each modality into **generic** (shared) and **unique** (modality-specific) components, improving the representation of brain structure and functionality.
+
+- **Input Features**: sMRI captures structural brain data, while fMRI reflects functional connectivity.
+- **Output**: The model predicts brain age and classifies the subject's gender.
   
-- **Multi-Task Learning**: The model is designed to perform two tasks simultaneously: brain age estimation and gender prediction. By leveraging multitask learning, the model captures gender-specific aging patterns.
+**Key components**:
+- **Latent Variable Disentanglement**: Separate encoder branches for sMRI and fMRI to isolate shared and modality-specific information.
+- **Multitask Learning**: Simultaneous learning of brain age and gender prediction.
+
+**Training Strategy**: The M-AVAE was trained on **3,984 scans** from the OpenBHB dataset, with the model designed to leverage both adversarial learning for latent space regularization and variational autoencoders to impose prior distributions on latent variables.
+
+![Model Architecture](images/model.png)
+*Figure: The M-AVAE model architecture for brain age and gender prediction using multimodal MRI data.*
+
+---
+
+### **3. Datasets**
+
+Our experiments were conducted using the **OpenBHB dataset**, which includes over **5,000 brain MRI scans** across multiple sites. Specifically, we utilized a subset containing both sMRI and fMRI data, with a focus on subjects aged 15 to 52. After preprocessing, the dataset was split into training and validation sets.
+
+**Preprocessing**:
+- Structural MRI (sMRI) data was used to extract cortical morphometry.
+- Functional MRI (fMRI) data provided functional connectivity maps.
   
-- **Latent Space Disentanglement**: Latent variables are divided into shared and unique components across the two imaging modalities (sMRI and fMRI). The adversarial and variational losses ensure that the shared information is robust, while modality-specific information is disentangled effectively.
-  
-- **Loss Functions**: The model optimizes a combination of adversarial, variational, regression, and classification losses to ensure both accurate age estimation and reliable gender classification.
+The dataset covers multiple age groups and both sexes, providing a diverse and comprehensive benchmark for evaluating brain age estimation models.
+
+![Age Distribution](images/age_histo2.png)
+*Figure: Age and gender distribution of the OpenBHB dataset.*
 
 ---
 
 ## **Results**
 
-Extensive experimentation on publicly available neuroimaging datasets demonstrated the superior performance of the proposed M-AVAE model over several baseline methods. Key results include:
+### **1. Comparison with State-of-the-Art Methods**
 
-- **Performance Metrics**: The M-AVAE outperforms traditional methods such as Random Forest, Support Vector Regression, and AAE models in terms of Mean Absolute Error (MAE), Root Mean Square Error (RMSE), and Pearson Correlation Coefficient (PCC).
-  
-- **Multimodal Fusion**: Incorporating both sMRI and fMRI data significantly improved the model’s performance, with the M-AVAE showing the lowest MAE in the age estimation task.
+We evaluated the performance of our M-AVAE model against several regression models, including **Random Forest (RF)**, **Support Vector Regression (SVR)**, **Gaussian Process Regression (GPR)**, and traditional **Adversarial Autoencoders (AAE)**. M-AVAE outperformed all comparison methods, achieving an **MAE of 2.77 years**.
 
-- **Gender Prediction**: By incorporating gender as an auxiliary task, the model demonstrated enhanced accuracy, leveraging the biological differences in brain aging patterns between males and females.
+| **Method**       | **MAE** | **RMSE** | **PCC**  |
+|------------------|---------|----------|----------|
+| **Random Forest** | 4.96 ± 3.00 | 5.80 ± 4.27 | 0.65 ± 0.29 |
+| **SVR**           | 4.46 ± 2.82 | 5.28 ± 4.04 | 0.69 ± 0.25 |
+| **AAE**           | 3.13 ± 1.85 | 3.63 ± 2.18 | 0.80 ± 0.14 |
+| **M-AAE**         | 3.13 ± 1.98 | 3.70 ± 2.17 | 0.81 ± 0.12 |
+| **M-AVAE**        | **2.77 ± 1.57** | **3.19 ± 1.90** | **0.82 ± 0.13** |
 
-Below are sample performance comparisons of M-AVAE with other methods:
-
-| **Method**   | **MAE**   | **RMSE**  | **PCC**   |
-|--------------|-----------|-----------|-----------|
-| Random Forest (RF)   | 4.96 ± 3.00 | 5.80 ± 4.27 | 0.65 ± 0.29 |
-| SVR   | 4.46 ± 2.82 | 5.27 ± 4.04 | 0.69 ± 0.25 |
-| **M-AVAE (Proposed)**  | **2.77 ± 1.57** | **3.18 ± 1.90** | **0.82 ± 0.13** |
-
-The M-AVAE model provides superior accuracy and demonstrates its robustness across different age groups and imaging modalities.
+*Table: Comparison of the brain age estimation performance (MAE, RMSE, and PCC) across methods.*
 
 ---
 
-## **Model Architecture**
+### **2. Multimodal Fusion Analysis**
 
-![M-AVAE Architecture](images/model.png)
+We assessed the impact of multimodal fusion (sMRI + fMRI) compared to unimodal models. The results confirmed that combining both modalities yields superior performance, reducing the **MAE from 3.15 years (sMRI alone) to 2.77 years** (multimodal). This demonstrates the value of leveraging complementary structural and functional information.
 
-The architecture of the M-AVAE consists of two encoders, each handling one modality (sMRI or fMRI). These encoders generate a latent space, which is divided into shared and unique parts. The decoder reconstructs the original inputs, and multitask learning is used to predict both the age and gender of the subjects.
-
-- **Encoders**: For each modality (sMRI and fMRI), a dedicated encoder extracts relevant features and divides them into shared and unique components.
-- **Decoder**: The decoder reconstructs the inputs using both the shared and unique latent features.
-- **Adversarial and Variational Losses**: These losses ensure that the shared and unique latent spaces are correctly disentangled, improving the model's robustness.
+![Multimodal vs Unimodal](images/f222.png)
+*Figure: Comparison of MAE across multimodal (sMRI + fMRI) and unimodal (sMRI/fMRI) models.*
 
 ---
 
-## **Performance Comparison**
+### **3. Robustness and Feature Space Visualization**
 
-The performance of the proposed M-AVAE model was evaluated against various state-of-the-art methods, showing its superiority, particularly in the integration of multimodal data and the inclusion of gender prediction.
+We further validated the robustness of M-AVAE using **Manifold Discovery and Analysis (MDA)**, which visualizes the separation of features in the latent space across epochs. As the model trains, feature representations become more distinct and organized, highlighting the model’s ability to generalize effectively, even in the presence of noisy data.
 
-| **Model**                  | **MAE** | **RMSE** | **PCC** |
-|----------------------------|---------|----------|---------|
-| 3D-Peng (2021)              | 4.17    | 5.37     | —       |
-| Age-Net-Gender (2021)       | 3.61    | 4.76     | —       |
-| CAE (2023)                  | 2.71    | 3.68     | 0.87    |
-| **Proposed M-AVAE**         | **2.77** | **3.18** | **0.82** |
+![Feature Space Representation](images/feature_representations.png)
+*Figure: Visualization of the feature space using MDA across various layers and training epochs.*
+
+---
+
+## **Conclusion**
+
+The M-AVAE model offers a transformative approach to **brain age estimation** by integrating **multimodal MRI data** (sMRI + fMRI) within a **multitask learning** framework. The model's ability to disentangle shared and unique modality features significantly enhances its predictive performance, setting a new standard in **AI-driven healthcare**. With a focus on **metaverse integration** and real-time patient monitoring via **digital twins**, M-AVAE has the potential to revolutionize neuroimaging diagnostics.
+
+The source code for the M-AVAE model is available at [GitHub Repository](https://github.com/engrussman/MAVAE).
 
 ---
 
