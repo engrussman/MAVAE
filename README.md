@@ -23,7 +23,7 @@ Accurate estimation of biological age (BA) from neuroimaging data is crucial for
 
 Our study addresses this gap by focusing on the integration of functional magnetic resonance imaging (fMRI) and structural magnetic resonance imaging (sMRI) to estimate brain age. Additionally, we incorporate gender prediction, as gender differences significantly influence the brain aging process. The novel M-AVAE framework introduced in this project disentangles the shared and unique features of the sMRI and fMRI data to improve the estimation of brain age.
 ![Brain Scan Visualizations](images/visual_sMRI_fMRI.png)
-*Visualization of sMRI and fMRI brain scans across different age groups.*
+*Visualization of sMRI and fMRI brain scans across different age groups and sex.*
 
 ---
 
