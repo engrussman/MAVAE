@@ -35,9 +35,9 @@ Evaluated on the **OpenBHB dataset**, a comprehensive brain MRI collection, the 
 
 ### **1. Digital Twin and Brain Age Estimation in the Metaverse**
 
-One transformative application of AI within the metaverse is the **digital twin**. A digital twin is a virtual replica of an individual's brain or body that is updated in real-time using data from wearables, imaging, and electronic health records (EHR). The twin enables continuous health monitoring and predictive diagnostics.
+The digital twin concept in healthcare refers to a real-time virtual replica of a patient, updated using data from wearables, imaging, and electronic health records. This allows for continuous health monitoring and predictive diagnostics.
 
-By integrating **brain age estimation** within a digital twin, healthcare providers can monitor patients' neurological health in real time, simulating and predicting the progression of brain diseases like Alzheimer's. This integration of brain age into a **metaverse-based AI ecosystem** allows for personalized treatment strategies and early intervention.
+Integrating brain age estimation into a patient's digital twin within the metaverse enables dynamic neurological health assessment, providing personalized treatment strategies and early intervention for conditions like Alzheimer's disease.
 
 ![Digital Twin in Healthcare](images/DigitalTwin.png)
 *Figure: A metaverse-based healthcare AI system using a digital twin for brain age estimation and secure data sharing.*
@@ -62,21 +62,6 @@ We propose the **Multitask Adversarial Variational Autoencoder (M-AVAE)** for br
 
 ---
 
-### **3. Datasets**
-
-Our experiments were conducted using the **OpenBHB dataset**, which includes over **5,000 brain MRI scans** across multiple sites. Specifically, we utilized a subset containing both sMRI and fMRI data, with a focus on subjects aged 15 to 52. After preprocessing, the dataset was split into training and validation sets.
-
-**Preprocessing**:
-- Structural MRI (sMRI) data was used to extract cortical morphometry.
-- Functional MRI (fMRI) data provided functional connectivity maps.
-  
-The dataset covers multiple age groups and both sexes, providing a diverse and comprehensive benchmark for evaluating brain age estimation models.
-
-![Age Distribution](images/age_histo2.png)
-*Figure: Age and gender distribution of the OpenBHB dataset.*
-
----
-
 ## **Results**
 
 ### **1. Comparison with State-of-the-Art Methods**
@@ -92,24 +77,6 @@ We evaluated the performance of our M-AVAE model against several regression mode
 | **M-AVAE**        | **2.77 ± 1.57** | **3.19 ± 1.90** | **0.82 ± 0.13** |
 
 *Table: Comparison of the brain age estimation performance (MAE, RMSE, and PCC) across methods.*
-
----
-
-### **2. Multimodal Fusion Analysis**
-
-We assessed the impact of multimodal fusion (sMRI + fMRI) compared to unimodal models. The results confirmed that combining both modalities yields superior performance, reducing the **MAE from 3.15 years (sMRI alone) to 2.77 years** (multimodal). This demonstrates the value of leveraging complementary structural and functional information.
-
-![Multimodal vs Unimodal](images/f222.png)
-*Figure: Comparison of MAE across multimodal (sMRI + fMRI) and unimodal (sMRI/fMRI) models.*
-
----
-
-### **3. Robustness and Feature Space Visualization**
-
-We further validated the robustness of M-AVAE using **Manifold Discovery and Analysis (MDA)**, which visualizes the separation of features in the latent space across epochs. As the model trains, feature representations become more distinct and organized, highlighting the model’s ability to generalize effectively, even in the presence of noisy data.
-
-![Feature Space Representation](images/feature_representations.png)
-*Figure: Visualization of the feature space using MDA across various layers and training epochs.*
 
 ---
 
