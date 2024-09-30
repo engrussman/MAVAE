@@ -55,7 +55,7 @@ We propose the **Multitask Adversarial Variational Autoencoder (M-AVAE)** for br
 
 ## **Results**
 
-### **1. Comparison with State-of-the-Art Methods**
+### Comparison with State-of-the-Art Methods**
 
 We evaluated the performance of our M-AVAE model against several regression models, including **Random Forest (RF)**, **Support Vector Regression (SVR)**, **Gaussian Process Regression (GPR)**, and traditional **Adversarial Autoencoders (AAE)**. M-AVAE outperformed all comparison methods, achieving an **MAE of 2.77 years**.
 
