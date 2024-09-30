@@ -6,14 +6,17 @@ This project focuses on predicting biological brain age using multimodal MRI dat
 
 ## **Table of Contents**
 - [Introduction](#introduction)
-- [Methodology](#methodology)
+- [Proposed Model: M-AVAE](#proposed-model-m-avae)
 - [Results](#results)
-- [Installation](#installation)
+  - [Comparison with State-of-the-Art Methods](#comparison-with-state-of-the-art-methods)
 - [Usage](#usage)
-- [Model Architecture](#model-architecture)
-- [Performance Comparison](#performance-comparison)
-- [License](#license)
-- [Contact](#contact)
+  - [Setup and Installation](#setup-and-installation)
+  - [Prepare Your Data](#prepare-your-data)
+  - [Training the Model](#training-the-model)
+  - [Testing the Model](#testing-the-model)
+  - [Inference with New Data](#inference-with-new-data)
+  - [Expected Output](#expected-output)
+  - [Evaluating the Model Performance](#evaluating-the-model-performance)
 
 ---
 
